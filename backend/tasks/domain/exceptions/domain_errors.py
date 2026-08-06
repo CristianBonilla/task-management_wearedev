@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 from uuid import UUID
 
+
 class DomainError(Exception):
 
     status_code: int = 400
@@ -14,11 +15,13 @@ class DomainError(Exception):
         self.detail = detail
         self.errors = errors or {}
 
+
 class TaskValidationError(DomainError):
 
     status_code = 422
     error_type = "https://api.taskmanager/errors/validation"
     title = "Validation Error"
+
 
 class InvalidTaskStatusError(DomainError):
 
@@ -31,6 +34,7 @@ class InvalidTaskStatusError(DomainError):
             detail=f"'{value}' is not a valid status. Allowed values: {', '.join(allowed)}.",
             errors={"status": [f"Must be one of: {', '.join(allowed)}."]},
         )
+
 
 class TaskNotFoundError(DomainError):
 

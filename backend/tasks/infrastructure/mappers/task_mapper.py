@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from ..domain.entities import Task
-from ..domain.value_objects import TaskStatus
-from .models import TaskModel
+from ...domain.entities import Task
+from ...domain.value_objects import TaskStatus
+from ..models import TaskModel
+
 
 class TaskMapper:
     @staticmethod

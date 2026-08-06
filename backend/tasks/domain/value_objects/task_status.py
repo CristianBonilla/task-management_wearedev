@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 
+
 class TaskStatus(str, Enum):
 
     PENDIENTE = "PENDIENTE"
@@ -10,7 +11,7 @@ class TaskStatus(str, Enum):
 
     @classmethod
     def from_value(cls, value: str) -> "TaskStatus":
-        from .exceptions import InvalidTaskStatusError
+        from ..exceptions import InvalidTaskStatusError
 
         try:
             return cls(value)

@@ -3,12 +3,13 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from uuid import UUID
 
-from ..domain.entities import Task
-from ..domain.exceptions import TaskNotFoundError
-from ..domain.repositories import TaskRepository
-from ..domain.value_objects import TaskStatus
-from .mappers import TaskMapper
-from .models import TaskModel
+from ...domain.entities import Task
+from ...domain.exceptions import TaskNotFoundError
+from ...domain.repositories import TaskRepository
+from ...domain.value_objects import TaskStatus
+from ..mappers import TaskMapper
+from ..models import TaskModel
+
 
 class DjangoTaskRepository(TaskRepository):
     def add(self, task: Task) -> Task:

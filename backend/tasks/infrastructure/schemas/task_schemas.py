@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
-
 from django.conf import settings
 from rest_framework import serializers
 
-from ..domain.value_objects import TaskStatus
+from ...domain.value_objects import TaskStatus
+from ...shared.utils.datetime import utcnow
+
 
 class TaskOutputSerializer(serializers.Serializer):
 
@@ -24,7 +24,8 @@ class TaskOutputSerializer(serializers.Serializer):
 
     def get_is_expiring(self, obj) -> bool:
         window = int(getattr(settings, "EXPIRING_WINDOW_HOURS", 48))
-        return obj.is_expiring(window_hours=window, now=datetime.now(tz=timezone.utc))
+        return obj.is_expiring(window_hours=window, now=utcnow())
+
 
 class CreateTaskSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
@@ -36,6 +37,7 @@ class CreateTaskSerializer(serializers.Serializer):
     )
     due_date = serializers.DateTimeField(required=False, allow_null=True)
 
+
 class UpdateTaskSerializer(serializers.Serializer):
 
     title = serializers.CharField(max_length=200, required=False)
@@ -43,8 +45,10 @@ class UpdateTaskSerializer(serializers.Serializer):
     status = serializers.ChoiceField(choices=TaskStatus.values(), required=False)
     due_date = serializers.DateTimeField(required=False, allow_null=True)
 
+
 class ChangeStatusSerializer(serializers.Serializer):
     status = serializers.ChoiceField(choices=TaskStatus.values())
+
 
 class ExpiringQuerySerializer(serializers.Serializer):
     window_hours = serializers.IntegerField(required=False, min_value=1, max_value=8760)

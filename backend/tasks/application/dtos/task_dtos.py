@@ -6,6 +6,7 @@ from typing import Final
 
 UNSET: Final = object()
 
+
 @dataclass(frozen=True, slots=True)
 class CreateTaskDTO:
     title: str
@@ -14,6 +15,7 @@ class CreateTaskDTO:
     due_date: datetime | None
     created_by: str
 
+
 @dataclass(frozen=True, slots=True)
 class UpdateTaskDTO:
 
@@ -21,6 +23,7 @@ class UpdateTaskDTO:
     description: str | object = UNSET
     status: str | object = UNSET
     due_date: datetime | None | object = UNSET
+
 
 @dataclass(frozen=True, slots=True)
 class ChangeStatusDTO:

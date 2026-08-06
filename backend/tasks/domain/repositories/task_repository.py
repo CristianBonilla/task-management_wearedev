@@ -4,8 +4,9 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from uuid import UUID
 
-from .entities import Task
-from .value_objects import TaskStatus
+from ..entities import Task
+from ..value_objects import TaskStatus
+
 
 class TaskRepository(ABC):
 

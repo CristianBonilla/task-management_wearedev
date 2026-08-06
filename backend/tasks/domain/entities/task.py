@@ -1,16 +1,15 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from datetime import datetime, timedelta, timezone
+from dataclasses import dataclass
+from datetime import datetime, timedelta
 from uuid import UUID
 
-from .exceptions import TaskValidationError
-from .value_objects import TaskStatus
+from ...shared.utils.datetime import utcnow
+from ..exceptions import TaskValidationError
+from ..value_objects import TaskStatus
 
 _TITLE_MAX_LENGTH = 200
 
-def _utcnow() -> datetime:
-    return datetime.now(tz=timezone.utc)
 
 @dataclass
 class Task:
@@ -83,10 +82,10 @@ class Task:
 
     def soft_delete(self, *, now: datetime | None = None) -> None:
         self.is_deleted = True
-        self.deleted_at = now or _utcnow()
+        self.deleted_at = now or utcnow()
 
     def is_expiring(self, *, window_hours: int, now: datetime | None = None) -> bool:
         if self.due_date is None or self.status == TaskStatus.COMPLETADA:
             return False
-        reference = now or _utcnow()
+        reference = now or utcnow()
         return reference <= self.due_date <= reference + timedelta(hours=window_hours)

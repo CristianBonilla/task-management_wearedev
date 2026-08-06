@@ -4,7 +4,8 @@ import uuid
 
 from django.db import models
 
-from ..domain.value_objects import TaskStatus
+from ...domain.value_objects import TaskStatus
+
 
 class TaskQuerySet(models.QuerySet):
     def alive(self) -> "TaskQuerySet":
@@ -13,10 +14,12 @@ class TaskQuerySet(models.QuerySet):
     def deleted(self) -> "TaskQuerySet":
         return self.filter(is_deleted=True)
 
+
 class AliveTaskManager(models.Manager):
 
     def get_queryset(self) -> TaskQuerySet:
         return TaskQuerySet(self.model, using=self._db).filter(is_deleted=False)
+
 
 class TaskModel(models.Model):
     STATUS_CHOICES = [(status.value, status.value) for status in TaskStatus]

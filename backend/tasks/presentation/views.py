@@ -8,7 +8,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from ..application.dtos import UNSET, ChangeStatusDTO, CreateTaskDTO, UpdateTaskDTO
-from ..infrastructure.serializers import (
+from ..infrastructure.schemas import (
     ChangeStatusSerializer,
     CreateTaskSerializer,
     ExpiringQuerySerializer,
