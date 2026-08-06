@@ -1,0 +1,22 @@
+# --- Core ---
+Django==5.1.4
+djangorestframework==3.15.2
+
+# --- PostgreSQL driver (psycopg 3) ---
+psycopg[binary]==3.2.3
+
+# --- Configuration via environment variables ---
+django-environ==0.11.2
+
+# --- CORS (mobile app consumption) ---
+django-cors-headers==4.6.0
+
+# --- Authentication (JWT-ready for production, optional at runtime) ---
+djangorestframework-simplejwt==5.3.1
+
+# --- WSGI server for production ---
+gunicorn==23.0.0
+
+# --- Testing ---
+pytest==8.3.4
+pytest-django==4.9.0
