@@ -1,0 +1,11 @@
+# Normalize line endings to LF on checkin/checkout across platforms.
+* text=auto eol=lf
+
+# Binary files git should not touch.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.apk binary
+*.keystore binary
