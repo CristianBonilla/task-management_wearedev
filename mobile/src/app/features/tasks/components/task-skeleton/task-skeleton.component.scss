@@ -1,0 +1,48 @@
+.skeleton-card {
+  border-radius: 16px;
+  padding: 16px;
+  margin: 12px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+ion-skeleton-text {
+  --border-radius: 8px;
+  margin: 0;
+}
+
+.title {
+  width: 55%;
+  height: 18px;
+}
+
+.badge {
+  width: 74px;
+  height: 18px;
+  border-radius: 999px;
+}
+
+.line {
+  width: 100%;
+  height: 12px;
+  margin-bottom: 8px;
+}
+
+.line.short {
+  width: 40%;
+}
+
+.footer {
+  width: 30%;
+  height: 12px;
+  margin-top: 10px;
+}

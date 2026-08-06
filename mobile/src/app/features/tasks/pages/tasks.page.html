@@ -1,0 +1,90 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="app-toolbar">
+    <ion-title>
+      <div class="brand">
+        <span class="brand-title">Mis Tareas</span>
+        <span class="brand-subtitle">{{ pendingCount() }} pendientes · {{ completedCount() }} completadas</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar class="segment-toolbar">
+    <ion-segment
+      scrollable
+      [value]="filter()"
+      (ionChange)="onFilterChange($event.detail.value)"
+    >
+      <ion-segment-button value="all">
+        <ion-label>Todas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pending">
+        <ion-label>Pendientes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="completed">
+        <ion-label>Completadas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="expiring">
+        <ion-label>
+          Por vencer
+          @if (expiringCount() > 0) {
+            <span class="count-dot">{{ expiringCount() }}</span>
+          }
+        </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="tasks-content">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="refresh-outline"
+      refreshingSpinner="crescent"
+      pullingText="Desliza para actualizar"
+      refreshingText="Actualizando…"
+    ></ion-refresher-content>
+  </ion-refresher>
+
+  @if (loading() && tasks().length === 0) {
+    <app-task-skeleton [count]="5"></app-task-skeleton>
+  } @else if (visibleTasks().length === 0) {
+    <div class="empty-state">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      <h3>Todo en orden</h3>
+      <p>No hay tareas en esta vista. Crea una nueva con el botón +.</p>
+    </div>
+  } @else {
+    <div class="task-list">
+      @for (task of visibleTasks(); track trackById($index, task)) {
+        <app-task-card
+          [task]="task"
+          (complete)="onComplete($event)"
+          (postpone)="onPostpone($event)"
+          (remove)="onDelete($event)"
+          (edit)="openEdit($event)"
+        ></app-task-card>
+      }
+    </div>
+  }
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button class="fab-accent" (click)="openCreate()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-modal
+  [isOpen]="isModalOpen()"
+  [breakpoints]="modalBreakpoints"
+  initialBreakpoint="0.8"
+  handle="true"
+  (didDismiss)="closeModal()"
+>
+  <ng-template>
+    <app-task-form
+      [task]="editingTask()"
+      (save)="onSave($event)"
+      (cancelForm)="closeModal()"
+    ></app-task-form>
+  </ng-template>
+</ion-modal>

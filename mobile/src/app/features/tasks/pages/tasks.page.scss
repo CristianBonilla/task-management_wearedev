@@ -1,0 +1,106 @@
+.app-toolbar {
+  --background: transparent;
+  padding-top: 6px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 4px 0;
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--ion-text-color);
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ion-color-medium);
+  margin-top: 2px;
+}
+
+.segment-toolbar {
+  --background: transparent;
+}
+
+ion-segment {
+  --background: var(--glass-bg);
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  padding: 4px;
+}
+
+ion-segment-button {
+  --indicator-color: var(--ion-color-primary);
+  --color: var(--ion-color-medium);
+  --color-checked: #fff;
+  --border-radius: 10px;
+  min-height: 34px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.count-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  padding: 0 4px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #ff5f6d, #ff9d4d);
+}
+
+.tasks-content {
+  --padding-top: 8px;
+  --padding-bottom: 96px;
+}
+
+.task-list {
+  padding-top: 4px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 72px 32px;
+  color: var(--ion-color-medium);
+}
+
+.empty-state ion-icon {
+  font-size: 56px;
+  color: var(--ion-color-primary);
+  margin-bottom: 12px;
+}
+
+.empty-state h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ion-text-color);
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 14px;
+  max-width: 260px;
+}
+
+.fab-accent {
+  --background: linear-gradient(135deg, var(--ion-color-primary), #9d7bff);
+  --background-activated: var(--ion-color-primary-shade);
+  --box-shadow: 0 10px 24px rgba(99, 71, 214, 0.5);
+}

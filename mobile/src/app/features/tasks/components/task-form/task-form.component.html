@@ -1,0 +1,84 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelForm.emit()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ isEdit ? 'Editar tarea' : 'Nueva tarea' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button strong="true" (click)="submit()">
+        <ion-icon slot="start" name="save-outline"></ion-icon>
+        Guardar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field">
+      <label class="field-label">Título</label>
+      <ion-item class="input-item" lines="none">
+        <ion-input
+          formControlName="title"
+          placeholder="¿Qué necesitas hacer?"
+          maxlength="200"
+          autocapitalize="sentences"
+        ></ion-input>
+      </ion-item>
+      @if (form.controls.title.touched && form.controls.title.invalid) {
+        <p class="error">El título es obligatorio.</p>
+      }
+    </div>
+
+    <div class="field">
+      <label class="field-label">Descripción</label>
+      <ion-item class="input-item" lines="none">
+        <ion-textarea
+          formControlName="description"
+          placeholder="Añade detalles (opcional)"
+          [autoGrow]="true"
+          rows="3"
+        ></ion-textarea>
+      </ion-item>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Estado</label>
+      <ion-item class="input-item" lines="none">
+        <ion-select formControlName="status" interface="popover" placeholder="Estado">
+          @for (status of statuses; track status) {
+            <ion-select-option [value]="status">{{ labels[status] }}</ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Vencimiento</label>
+      <ion-item class="input-item" lines="none">
+        <ion-datetime-button datetime="due-datetime"></ion-datetime-button>
+        <ion-button
+          fill="clear"
+          size="small"
+          slot="end"
+          (click)="clearDate()"
+        >
+          Quitar
+        </ion-button>
+      </ion-item>
+    </div>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime
+          id="due-datetime"
+          formControlName="due_date"
+          presentation="date-time"
+          [showDefaultButtons]="true"
+          doneText="Listo"
+          cancelText="Cancelar"
+        ></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </form>
+</ion-content>

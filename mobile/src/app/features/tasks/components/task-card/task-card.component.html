@@ -1,0 +1,57 @@
+<ion-item-sliding #sliding>
+  <!-- Swipe right reveals delete (soft delete) -->
+  <ion-item-options side="start" (ionSwipe)="onDelete(sliding)">
+    <ion-item-option color="danger" expandable (click)="onDelete(sliding)">
+      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+    </ion-item-option>
+  </ion-item-options>
+
+  <ion-item lines="none" class="card-item" (click)="edit.emit(task())">
+    <ion-label class="reset">
+      <div class="glass-card" [class.is-completed]="task().status === TaskStatus.Completada">
+        <div class="card-head">
+          <h2 class="title">{{ task().title }}</h2>
+          <app-status-badge [status]="task().status"></app-status-badge>
+        </div>
+
+        @if (task().description) {
+          <p class="description">{{ task().description }}</p>
+        }
+
+        <div class="card-foot">
+          @if (task().due_date) {
+            <span class="due">
+              <ion-icon name="calendar-outline"></ion-icon>
+              {{ task().due_date | date: 'dd MMM, HH:mm' }}
+            </span>
+          } @else {
+            <span class="due muted">Sin fecha</span>
+          }
+
+          @if (task().is_expiring) {
+            <span class="expiring-badge">
+              <ion-icon name="alert-circle-outline"></ion-icon>
+              Próxima a vencer
+            </span>
+          }
+        </div>
+      </div>
+    </ion-label>
+  </ion-item>
+
+  <!-- Swipe left reveals quick complete / postpone -->
+  <ion-item-options side="end">
+    @if (task().status !== TaskStatus.Completada) {
+      <ion-item-option color="success" (click)="onComplete(sliding)">
+        <ion-icon slot="top" name="checkmark-done-outline"></ion-icon>
+        Completar
+      </ion-item-option>
+    }
+    @if (task().status !== TaskStatus.Pospuesta) {
+      <ion-item-option color="warning" (click)="onPostpone(sliding)">
+        <ion-icon slot="top" name="play-forward-outline"></ion-icon>
+        Posponer
+      </ion-item-option>
+    }
+  </ion-item-options>
+</ion-item-sliding>
