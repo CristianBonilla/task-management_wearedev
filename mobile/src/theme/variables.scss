@@ -1,0 +1,76 @@
+// ---------------------------------------------------------------------------
+// Design system — Indigo / Violet accents with a polished glass surface.
+// Dark mode is driven automatically by @ionic/css/palettes/dark.system.css.
+// ---------------------------------------------------------------------------
+
+:root {
+  // Primary — Indigo / Violet
+  --ion-color-primary: #6c5ce7;
+  --ion-color-primary-rgb: 108, 92, 231;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5f51cb;
+  --ion-color-primary-tint: #7b6ce9;
+
+  --ion-color-secondary: #a06bff;
+  --ion-color-secondary-rgb: 160, 107, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #8d5ee0;
+  --ion-color-secondary-tint: #aa7aff;
+
+  --ion-color-success: #2dd495;
+  --ion-color-success-rgb: 45, 212, 149;
+  --ion-color-success-contrast: #05261a;
+  --ion-color-success-shade: #28bb83;
+  --ion-color-success-tint: #42d8a0;
+
+  --ion-color-warning: #ffa54a;
+  --ion-color-warning-rgb: 255, 165, 74;
+  --ion-color-warning-contrast: #3a2400;
+  --ion-color-warning-shade: #e09141;
+  --ion-color-warning-tint: #ffae5c;
+
+  --ion-color-danger: #ff5f6d;
+  --ion-color-danger-rgb: 255, 95, 109;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-shade: #e05460;
+  --ion-color-danger-tint: #ff6f7c;
+
+  // Light theme surfaces
+  --ion-background-color: #f4f4fb;
+  --ion-background-color-rgb: 244, 244, 251;
+  --ion-text-color: #1a1a2e;
+  --ion-text-color-rgb: 26, 26, 46;
+
+  // App gradient + glassmorphism tokens (light)
+  --app-gradient: radial-gradient(
+      1200px 600px at 20% -10%,
+      rgba(108, 92, 231, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(900px 500px at 100% 0%, rgba(160, 107, 255, 0.14), transparent 55%),
+    linear-gradient(180deg, #f6f6fd 0%, #eef0fb 100%);
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.75);
+}
+
+// Dark theme surfaces + glass tokens
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #0e0f1a;
+    --ion-background-color-rgb: 14, 15, 26;
+    --ion-text-color: #eef0ff;
+    --ion-text-color-rgb: 238, 240, 255;
+
+    --app-gradient: radial-gradient(
+        1200px 600px at 15% -10%,
+        rgba(108, 92, 231, 0.28),
+        transparent 60%
+      ),
+      radial-gradient(900px 500px at 100% 0%, rgba(160, 107, 255, 0.2), transparent 55%),
+      linear-gradient(180deg, #0e0f1a 0%, #121327 100%);
+    --glass-bg: rgba(30, 32, 54, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.08);
+  }
+}
