@@ -3,5 +3,6 @@
     "@ionic/angular/common",
     "@ionic/angular/standalone"
   ],
-  "js/ts.tsdk.path": "node_modules\\typescript\\lib"
+  "js/ts.tsdk.path": "node_modules\\typescript\\lib",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
