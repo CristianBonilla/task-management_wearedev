@@ -75,7 +75,7 @@ backend/tasks/
 | **Angular** | 20.3 | Standalone + Signals |
 | **Ionic** | 8 | |
 | **Capacitor** | 8 | `@capacitor/haptics`, `@capacitor/android` |
-| **Java JDK** | 17+ | Solo para compilar la APK |
+| **Java JDK** | 21+ | Solo para compilar la APK |
 | **Android SDK** | Platform 34+ | Solo para compilar la APK |
 | **Docker / Compose** | 24+ / v2 | Opcional (ejecución con un comando) |
 
