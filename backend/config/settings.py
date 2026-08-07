@@ -9,8 +9,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
     DJANGO_DEBUG=(bool, False),
-    DJANGO_ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1"]),
-    CORS_ALLOWED_ORIGINS=(list, []),
+    DJANGO_ALLOWED_HOSTS=(list, ["localhost", "127.0.0.1", "10.0.2.2"]),
+    CORS_ALLOWED_ORIGINS=(list, [
+        "http://localhost:8100",
+        "http://localhost:4200",
+        "http://localhost",
+        "https://localhost",
+        "capacitor://localhost"
+    ]),
     EXPIRING_WINDOW_HOURS=(int, 48),
     DEFAULT_TASK_OWNER=(str, "system"),
 )
@@ -73,9 +79,9 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": env("POSTGRES_DB", default="taskdb"),
-            "USER": env("POSTGRES_USER", default="taskuser"),
-            "PASSWORD": env("POSTGRES_PASSWORD", default="taskpass"),
+            "NAME": env("POSTGRES_DB", default="taskdb_wearedev"),
+            "USER": env("POSTGRES_USER", default="postgres"),
+            "PASSWORD": env("POSTGRES_PASSWORD", default="123__456"),
             "HOST": env("POSTGRES_HOST", default="localhost"),
             "PORT": env("POSTGRES_PORT", default="5432"),
         }
