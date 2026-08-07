@@ -22,7 +22,7 @@
           @if (task().due_date) {
             <span class="due">
               <ion-icon name="calendar-outline"></ion-icon>
-              {{ task().due_date | date: 'dd MMM, HH:mm' }}
+              {{ task().due_date | date: "d 'de' MMMM 'de' y, h:mm a" }}
             </span>
           } @else {
             <span class="due muted">Sin fecha</span>

@@ -24,6 +24,7 @@ import {
   Task,
   TaskStatus,
 } from '../../../../core/models/task.model';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-task-form',
@@ -75,14 +76,16 @@ export class TaskFormComponent {
           title: current.title,
           description: current.description ?? '',
           status: current.status,
-          due_date: current.due_date,
+          due_date: current.due_date
+            ? this.toLocalIso(new Date(current.due_date))
+            : this.defaultDueDate(),
         });
       } else {
         this.form.reset({
           title: '',
           description: '',
           status: TaskStatus.Pendiente,
-          due_date: null,
+          due_date: this.defaultDueDate(),
         });
       }
     });
@@ -92,8 +95,17 @@ export class TaskFormComponent {
     return this.task() !== null;
   }
 
-  clearDate(): void {
-    this.form.controls.due_date.setValue(null);
+  private defaultDueDate(): string {
+    const hours = environment.expiringWindowHours || 48;
+    return this.toLocalIso(new Date(Date.now() + hours * 60 * 60 * 1000));
+  }
+
+  private toLocalIso(date: Date): string {
+    const pad = (n: number) => String(n).padStart(2, '0');
+    return (
+      `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
+      `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+    );
   }
 
   submit(): void {
@@ -106,7 +118,9 @@ export class TaskFormComponent {
       title: raw.title.trim(),
       description: raw.description.trim(),
       status: raw.status,
-      due_date: raw.due_date ? new Date(raw.due_date).toISOString() : null,
+      due_date: raw.due_date
+        ? new Date(raw.due_date).toISOString()
+        : this.defaultDueDate(),
     });
   }
 }

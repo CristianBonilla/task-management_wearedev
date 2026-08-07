@@ -1,9 +1,12 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancelForm.emit()">Cancelar</ion-button>
+      <ion-button (click)="cancelForm.emit()">
+        <ion-icon slot="start" name="close-outline"></ion-icon>
+        Cancelar
+      </ion-button>
     </ion-buttons>
-    <ion-title>{{ isEdit ? 'Editar tarea' : 'Nueva tarea' }}</ion-title>
+    <ion-title class="ion-text-center">{{ isEdit ? 'Editar tarea' : 'Nueva tarea' }}</ion-title>
     <ion-buttons slot="end">
       <ion-button strong="true" (click)="submit()">
         <ion-icon slot="start" name="save-outline"></ion-icon>
@@ -57,14 +60,6 @@
       <label class="field-label">Vencimiento</label>
       <ion-item class="input-item" lines="none">
         <ion-datetime-button datetime="due-datetime"></ion-datetime-button>
-        <ion-button
-          fill="clear"
-          size="small"
-          slot="end"
-          (click)="clearDate()"
-        >
-          Quitar
-        </ion-button>
       </ion-item>
     </div>
 

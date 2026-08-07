@@ -1,3 +1,20 @@
+// Fill the modal's ion-page so the content area is never a bare (black) surface.
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+ion-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  --background: var(--app-gradient);
+}
+
+ion-title {
+  text-align: center;
+}
+
 .field {
   margin-bottom: 18px;
 }
