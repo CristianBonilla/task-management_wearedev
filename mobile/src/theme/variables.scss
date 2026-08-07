@@ -38,8 +38,8 @@
   --ion-color-danger-tint: #ff6f7c;
 
   // Light theme surfaces
-  --ion-background-color: #f4f4fb;
-  --ion-background-color-rgb: 244, 244, 251;
+  --ion-background-color: #e8e9f5;
+  --ion-background-color-rgb: 232, 233, 245;
   --ion-text-color: #1a1a2e;
   --ion-text-color-rgb: 26, 26, 46;
 
@@ -50,7 +50,7 @@
       transparent 60%
     ),
     radial-gradient(900px 500px at 100% 0%, rgba(160, 107, 255, 0.14), transparent 55%),
-    linear-gradient(180deg, #f6f6fd 0%, #eef0fb 100%);
+    linear-gradient(180deg, #ecedf7 0%, #e0e3f2 100%);
   --glass-bg: rgba(255, 255, 255, 0.62);
   --glass-border: rgba(255, 255, 255, 0.75);
 }
